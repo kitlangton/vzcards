@@ -11,9 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150728201745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "cards", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "template_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "instance_id"
+  end
+
+  add_index "cards", ["name"], name: "index_cards_on_name", using: :btree
+  add_index "cards", ["template_id"], name: "index_cards_on_template_id", using: :btree
+
+  create_table "templates", force: :cascade do |t|
+    t.string   "ids_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+  end
+
+  add_index "templates", ["ids_id"], name: "index_templates_on_ids_id", using: :btree
+
+  add_foreign_key "cards", "templates"
 end

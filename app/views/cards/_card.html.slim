@@ -1,0 +1,9 @@
+.card
+  .image= image_tag "http://165.254.199.10/sdsession/7f48a651-8393-487f-aa48-70e9b197054e/s1instance/#{card.instance_id}/output/S1PDF"
+  .name= card.name
+  .name= card.template.name
+  .name= card.instance_id
+  .controls
+    = link_to "Edit", edit_card_path(card)
+    br
+    = link_to "Delete", card_path(card), method: :delete

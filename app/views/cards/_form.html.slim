@@ -1,0 +1,5 @@
+= simple_form_for @card do |f|
+  = f.input :name
+  = f.input :template_id, collection: @templates
+  /= f.input :data
+  = f.submit
