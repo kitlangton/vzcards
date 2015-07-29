@@ -1,5 +1,16 @@
 = simple_form_for @card do |f|
   = f.input :name
   = f.input :template_id, collection: @templates
-  /= f.input :data
+  = f.input 'Device Name' do
+    = text_field_tag 'values[device]'
+  = f.input 'Sub Name' do
+    = text_field_tag 'values[device2]'
+  = f.input '2-Year Price' do
+    = text_field_tag 'values[2yrp]'
+  = f.input 'Effective Date' do
+    = text_field_tag 'values[eff]'
+  = f.input 'Legal' do
+    = text_field_tag 'values[legal]'
+  = f.input 'Retail price' do
+    = text_field_tag 'values[frp]'
   = f.submit

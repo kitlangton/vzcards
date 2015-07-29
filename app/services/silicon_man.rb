@@ -5,29 +5,22 @@ class SiliconMan
 
   SDSession = "4e926d2f-4bed-438f-9bd9-df276b5b87ff"
 
-  def instance(template_id: , input: )
-    resp = generate_template(template_id: template_id)
+  def create_instance(template_id: , input: )
+    resp = create_template(template_id: template_id)
 
-    xml = Nokogiri::XML(resp.body)
-    xml = xml.at_css("Template")
-    content = xml.css("Variable")
-    content.each do |c|
-      h = c.at_css("content")
-      h.content = input
-    end
-
+    xml = parse_response(resp)
+    add_variables_to_xml(input,xml)
     instance_id = xml['s1InstanceId']
 
-    xml = "<request><content>#{xml.to_s}</content></request>"
+    req = wrap_xml(xml)
 
-    resp = HTTParty.post("http://165.254.199.10/SDSession/#{SDSession}/S1Instance/#{instance_id}/Action/Update", body: xml)
+    resp = HTTParty.post("http://165.254.199.10/SDSession/#{SDSession}/S1Instance/#{instance_id}/Action/Update", body: req)
 
     return instance_id
   end
 
-  private
 
-  def generate_template(template_id: template_id)
+  def create_template(template_id: template_id)
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.request {
         xml.s1Template template_id
@@ -44,4 +37,23 @@ class SiliconMan
     http.request(request)
   end
 
+  private
+
+  def wrap_xml(xml)
+    "<request><content>#{xml.to_s}</content></request>"
+  end
+
+  def add_variables_to_xml(input,xml)
+    content = xml.css("Variable")
+    content.each do |c|
+      h = c.at_css("content")
+      value = input[c['name']]
+      h.content = value
+    end
+  end
+
+  def parse_response(resp)
+    xml = Nokogiri::XML(resp.body)
+    xml.at_css("Template")
+  end
 end

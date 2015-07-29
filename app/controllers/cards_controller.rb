@@ -12,7 +12,7 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
-    @card.instance_id = SiliconMan.new.instance(template_id: @card.template.ids_id,input: @card.name)
+    @card.instance_id = SiliconMan.new.create_instance(template_id: @card.template.ids_id,input: params['values'])
     if @card.save
       redirect_to cards_url
     else
