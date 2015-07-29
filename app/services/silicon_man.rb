@@ -1,4 +1,5 @@
 require 'uri'
+require 'nokogiri'
 require 'net/http'
 
 class SiliconMan
@@ -53,6 +54,7 @@ class SiliconMan
   end
 
   def parse_response(resp)
+    puts resp
     xml = Nokogiri::XML(resp.body)
     xml.at_css("Template")
   end
