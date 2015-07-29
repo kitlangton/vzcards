@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  get 'devices/index'
+
+  get 'devices/new'
+
+  get 'devices/edit'
+
   root "cards#index"
 
-  get 'cards/make', to: 'cards#make', as: 'make_card'
-  post 'cards/instance', to: 'cards#instance', as: 'create_instance'
   resources :templates
   resources :cards
+  resources :devices
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

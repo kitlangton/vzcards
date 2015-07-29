@@ -1,0 +1,15 @@
+.device
+  strong=device.name
+  br
+  strong=device.alias
+  br
+  strong=device.alias2
+  br
+  strong=device.manufacturer
+  br
+  strong=device.sku
+
+  .controls
+    = link_to "Edit", edit_device_path(device)
+    br
+    = link_to "Delete", device_path(device), method: :delete
