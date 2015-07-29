@@ -10,6 +10,8 @@
   strong=device.sku
 
   .controls
+    = link_to "Card From Device", new_device_card_path(device)
+    br
     = link_to "Edit", edit_device_path(device)
     br
     = link_to "Delete", device_path(device), method: :delete

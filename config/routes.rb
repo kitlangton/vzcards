@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   root "cards#index"
 
+  get 'devices/:id/cards/new', to: "cards#new_from_device", as: 'new_device_card'
+
   resources :templates
   resources :cards
   resources :devices
