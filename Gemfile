@@ -14,6 +14,8 @@ gem 'normalize-rails'
 gem 'paperclip'
 gem 'simple_form'
 gem 'httparty'
+gem 'aws-sdk'
+gem 'figaro'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
