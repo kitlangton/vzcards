@@ -23,10 +23,10 @@ gem 'figaro'
 # gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'better_errors'
+gem 'binding_of_caller'
 
 group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
 end
 
 group :test do
