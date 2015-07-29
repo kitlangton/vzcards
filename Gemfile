@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.2.2p95'
 gem 'rails', '4.2.3'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
@@ -23,6 +24,10 @@ gem 'figaro'
 # gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+#
+group :production do
+  gem 'rails_12factor'
+end
 
 group :development do
   gem 'better_errors'
