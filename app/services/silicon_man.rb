@@ -5,7 +5,7 @@ class SiliconMan
 
   SDSession = "4e926d2f-4bed-438f-9bd9-df276b5b87ff"
 
-  def create_instance(template_id: template_id, input: input)
+  def create_instance(template_id: , input: )
     resp = create_template(template_id: template_id)
 
     xml = parse_response(resp)
