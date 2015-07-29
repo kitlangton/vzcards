@@ -21,7 +21,7 @@ class SiliconMan
   end
 
 
-  def create_template(template_id: template_id)
+  def create_template(template_id: )
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.request {
         xml.s1Template template_id
@@ -54,7 +54,7 @@ class SiliconMan
   end
 
   def parse_response(resp)
-    puts resp
+    puts resp.body
     xml = Nokogiri::XML(resp.body)
     xml.at_css("Template")
   end
