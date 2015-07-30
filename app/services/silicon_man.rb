@@ -4,7 +4,7 @@ require 'net/http'
 
 class SiliconMan
 
-  SDSession = "4e926d2f-4bed-438f-9bd9-df276b5b87ff"
+  attr_reader :instance_id
 
   def create_instance(template_id: , input: )
     resp = create_template(template_id: template_id)
@@ -14,10 +14,14 @@ class SiliconMan
     instance_id = xml['s1InstanceId']
 
     req = wrap_xml(xml)
+    resp = HTTParty.post("http://165.254.199.10/SDSession/#{session_id}/S1Instance/#{instance_id}/Action/Update", body: req)
 
-    resp = HTTParty.post("http://165.254.199.10/SDSession/#{SDSession}/S1Instance/#{instance_id}/Action/Update", body: req)
-
+    @instance_id = instance_id
     return instance_id
+  end
+
+  def pdf_url
+    "http://165.254.199.10/sdsession/#{session_id}/s1instance/#{instance_id}/output/S1PDF"
   end
 
 
@@ -32,10 +36,18 @@ class SiliconMan
 
     uri = URI.parse("http://165.254.199.10/")
     http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Post.new("/SDSession/#{SDSession}/S1Instance/Action/Create")
+    request = Net::HTTP::Post.new("/SDSession/#{session_id}/S1Instance/Action/Create")
     request.add_field('Content-Type', 'application/xml')
     request.body = query
     http.request(request)
+  end
+
+  def session_id
+    @session_id ||= begin
+      req = "<request><context>verizon</context><user>verizon</user><password>verizon!</password></request>"
+      resp = HTTParty.post("http://165.254.199.10/SDSession/Action/Create", body: req)
+      @session_id = resp["response"]["content"]["sDSession"]["sDSessionID"]
+    end
   end
 
   private
