@@ -20,7 +20,7 @@ class CardsController < ApplicationController
   def create
     @card = Card.new(card_params)
     silicon = SiliconMan.new
-    @card.instance_id = silicon.new.create_instance(template_id: @card.template.ids_id,input: @card.variables)
+    @card.instance_id = silicon.create_instance(template_id: @card.template.ids_id,input: @card.variables)
     @card.image_from_url(silicon.pdf_url)
     if @card.save
       redirect_to cards_url
