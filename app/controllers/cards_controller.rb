@@ -19,9 +19,7 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
-    silicon = SiliconMan.new
-    @card.instance_id = silicon.create_instance(template_id: @card.template.ids_id,input: @card.variables)
-    @card.image_from_url(silicon.pdf_url)
+    @card.generate_pdf
     if @card.save
       redirect_to cards_url
     else
@@ -36,10 +34,8 @@ class CardsController < ApplicationController
   end
 
   def update
-    silicon = SiliconMan.new
     @card.assign_attributes(card_params)
-    @card.instance_id = silicon.create_instance(template_id: @card.template.ids_id,input: @card.variables)
-    @card.image_from_url(silicon.pdf_url)
+    @card.generate_pdf
     if @card.update(card_params)
       redirect_to cards_url
     else

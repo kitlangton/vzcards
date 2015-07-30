@@ -24,4 +24,10 @@ class Card < ActiveRecord::Base
       'eff' => self.effective_date,
     }
   end
+
+  def generate_pdf
+    silicon = SiliconMan.new
+    self.instance_id = silicon.create_instance(template_id: self.template.ids_id,input: self.variables)
+    self.image_from_url(silicon.pdf_url)
+  end
 end
