@@ -12,7 +12,7 @@ class CardsController < ApplicationController
   end
 
   def new_from_device
-    @device = Device.find(params[:id])
+    @device = Device.find(params[:device_id])
     @card = Card.new
     @templates = Template.all
   end
@@ -29,11 +29,17 @@ class CardsController < ApplicationController
     end
   end
 
-  def edit
+  def edit_from_device
+    @device = Device.find(params[:device_id])
+    @card = Card.find(params[:card_id])
+    @templates = Template.all
   end
 
   def update
-    @card.image_from_url(:image, open("http://165.254.199.10/sdsession/7f48a651-8393-487f-aa48-70e9b197054e/s1instance/#{@card.instance_id}/output/S1PDF"))
+    silicon = SiliconMan.new
+    @card.assign_attributes(card_params)
+    @card.instance_id = silicon.create_instance(template_id: @card.template.ids_id,input: @card.variables)
+    @card.image_from_url(silicon.pdf_url)
     if @card.update(card_params)
       redirect_to cards_url
     else

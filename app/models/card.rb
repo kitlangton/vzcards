@@ -15,6 +15,7 @@ class Card < ActiveRecord::Base
     { 'device' => self.device.alias,
       'device2' => self.device.alias2,
       '2yrp' => self.two_year_price,
+      'net' => self.two_year_price,
       'frp' => self.full_retail_price,
       'eff' => self.effective_date,
     }

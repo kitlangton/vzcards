@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   root "cards#index"
 
-  get 'devices/:id/cards/new', to: "cards#new_from_device", as: 'new_device_card'
+  get 'devices/:device_id/cards/new', to: "cards#new_from_device", as: 'new_device_card'
+  get 'devices/:device_id/cards/:card_id/edit', to: "cards#edit_from_device", as: 'edit_device_card'
 
   resources :templates
   resources :cards
