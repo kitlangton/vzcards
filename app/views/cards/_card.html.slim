@@ -1,8 +1,6 @@
 .card
   .image= image_tag card.image
   .name= card.name
-  .name= card.template.name
-  .name= card.instance_id
   .controls
     = link_to "Edit", edit_device_card_path(card.device, card)
     br

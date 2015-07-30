@@ -11,6 +11,10 @@ class Card < ActiveRecord::Base
     self.image_file_name = "#{self.image_file_name}.pdf"
   end
 
+  def name
+    self.device.name
+  end
+
   def variables
     { 'device' => self.device.alias,
       'device2' => self.device.alias2,
