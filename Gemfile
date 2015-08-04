@@ -20,6 +20,11 @@ gem 'figaro'
 gem 'unicorn'
 gem 'rack-timeout'
 gem 'sidekiq'
+gem 'bourbon'
+gem 'neat'
+gem 'jquery-turbolinks'
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -3,7 +3,7 @@ require 'uri'
 class Card < ActiveRecord::Base
   belongs_to :template
   belongs_to :device
-  has_attached_file :image, :styles => { :thumb => "200x200>" }
+  has_attached_file :image, :styles => { :thumb => ["300x200>", :png] }, convert_options: {all: "-alpha remove -background white"}
   validates_attachment_content_type :image, content_type: ['application/pdf']
 
   def image_from_url(url)

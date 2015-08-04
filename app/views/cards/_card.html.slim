@@ -1,7 +1,12 @@
-.card
-  .image= image_tag card.image
-  .name= card.name
-  .controls
-    = link_to "Edit", edit_device_card_path(card.device, card)
-    br
-    = link_to "Delete", card_path(card), method: :delete
+.card-container
+  .card
+    .image= image_tag card.image(:thumb)
+    .caption
+      .name= card.name
+      .controls
+        = link_to "Edit", edit_device_card_path(card.device, card)
+        = link_to "Delete", card_path(card), method: :delete
+    .cart-status
+      .icon +
+    .cart-added
+      Added
