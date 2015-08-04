@@ -1,12 +1,23 @@
 .card-container {
+  @include media(950px){
     @include span-columns(4);
     @include omega(3n);
+  }
+  @include media(min-width 480px max-width 950px){
+    @include span-columns(6);
+    @include omega(2n);
+  }
+  @include media(max-width 480px){
+    @include span-columns(12);
+    @include omega;
+  }
     margin-bottom: 20px;
     box-shadow: 0px 3px 7px rgba(0,0,0,0.3);
 }
 
 .container {
   @include outer-container;
+  padding: 0 15px;
   .card {
     min-height: 215px;
     @include user-select(none);
@@ -44,6 +55,7 @@
       @include transition-property(transform);
       @include transition-duration(0.4s);
       &:hover {
+        pointer-event: auto;
         @include transform(scale(1.2));
         cursor: pointer;
       }
