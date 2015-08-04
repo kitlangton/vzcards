@@ -3,4 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   $(".cart-status").on 'click', ->
-    $(@).addClass "added"
+    if $(@).hasClass "added"
+      $(@).removeClass "added"
+    else
+      $(@).addClass "added"

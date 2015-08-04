@@ -9,6 +9,7 @@
   @include outer-container;
   .card {
     min-height: 215px;
+    @include user-select(none);
     overflow: hidden;
     position: relative;
     margin: 0px;
@@ -28,6 +29,7 @@
     }
     }
     .cart-status {
+      @include user-select(none);
       text-align: center;
       position: absolute;
       margin: 5px;
@@ -47,6 +49,7 @@
       }
     }
     .icon {
+      @include user-select(none);
       @include transition-property(color);
       @include transition-duration(0.4s);
       @include transition-property(background-color);
@@ -81,6 +84,7 @@
         }
       }
       .name {
+        @include user-select(text);
         text-align: center;
         font-weight: bold;
         margin-bottom: 5px;
