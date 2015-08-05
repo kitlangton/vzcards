@@ -7,9 +7,9 @@ $ ->
       $(@).find("a").velocity
         color: "#ff0000", 100
       $(@).velocity
-        translateY: "-5px"
-        borderBottomWidth: "5px"
-        marginBottom: "-5px"
+        translateY: "-2px"
+        borderBottomWidth: "2px"
+        marginBottom: "-2px"
       ,
         "100"
     ).mouseleave ->
