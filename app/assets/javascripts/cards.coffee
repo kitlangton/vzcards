@@ -4,9 +4,9 @@
 $ ->
   $(".navlink").mouseenter(->
     if $(@).find("a").hasClass("active") != true
-      $(@).find("a").stop(true, false).velocity
-        color: "#ff0000"
-      $(@).stop(true, false).velocity
+      $(@).find("a").velocity
+        color: "#ff0000", 100
+      $(@).velocity
         translateY: "-5px"
         borderBottomWidth: "5px"
         marginBottom: "-5px"
@@ -14,9 +14,9 @@ $ ->
         "100"
     ).mouseleave ->
       if $(@).find("a").hasClass("active") != true
-        $(@).find("a").stop(true, false).velocity
+        $(@).find("a").velocity("stop", true).velocity
           color: "#777"
-        $(@).stop(true, false).velocity
+        $(@).velocity("stop", true).velocity
           translateY: "0px"
           borderBottomWidth: "0px"
           marginBottom: "0px"
