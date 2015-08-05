@@ -1,5 +1,9 @@
 .title Verizon Callout Cards 
+
 .navbar
-  = link_to "Cards", cards_path
-  = link_to "Templates", templates_path
-  = link_to "Devices", devices_path
+  .navlink
+    = link_to "CARDS", cards_path, class: (controller.class == CardsController and controller.action_name == "index" ? "active" : "")
+  .navlink
+    = link_to "TEMPLATES", templates_path, class: (controller.class == TemplatesController and controller.action_name == "index" ? "active" : "")
+  .navlink
+    = link_to "DEVICES", devices_path, class: (controller.class == DevicesController and controller.action_name == "index" ? "active" : "")

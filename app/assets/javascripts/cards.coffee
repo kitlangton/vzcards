@@ -2,6 +2,27 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
+  $(".navlink").mouseenter(->
+    if $(@).find("a").hasClass("active") != true
+      $(@).find("a").stop(true, false).velocity
+        color: "#ff0000"
+      $(@).stop(true, false).velocity
+        translateY: "-5px"
+        borderBottomWidth: "5px"
+        marginBottom: "-5px"
+      ,
+        "100"
+    ).mouseleave ->
+      if $(@).find("a").hasClass("active") != true
+        $(@).find("a").stop(true, false).velocity
+          color: "#777"
+        $(@).stop(true, false).velocity
+          translateY: "0px"
+          borderBottomWidth: "0px"
+          marginBottom: "0px"
+        ,
+          "100"
+
   $(".cart-status").on 'click', ->
     if $(@).hasClass "added"
       $(@).closest(".card").find(".cart-added").velocity

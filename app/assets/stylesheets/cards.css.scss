@@ -1,3 +1,7 @@
+.page-title {
+  text-align: center;
+}
+
 .card-container {
   @include media(950px){
     @include span-columns(4);
@@ -64,10 +68,6 @@
     .icon {
       @include backface-visibility(hidden);
       @include user-select(none);
-      @include transition-property(color);
-      @include transition-duration(0.4s);
-      @include transition-property(background-color);
-      @include transition-duration(0.4s);
       @include transition-property(transform);
       @include transition-duration(0.4s);
     }
@@ -126,15 +126,6 @@
 }
 
 
-.title {
-  font-weight: bold;
-  font-size: 2em;
-  padding: 30px;
-  margin-top: 0;
-  text-align: center;
-  color: white;
-  background-color: red;
-}
 
 .page-controls {
   margin-top: 20px;
